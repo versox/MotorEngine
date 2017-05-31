@@ -1,19 +1,13 @@
-/* 
- * File:   main.cpp
- * Author: mathp0455
- *
- * Created on May 29, 2017, 9:50 AM
- */
+#include <iostream>
+#include "Game.h"
+#include "TestGame.h"
 
-#include <cstdlib>
+#ifdef main
+# undef main
+#endif
 
-using namespace std;
-
-/*
- * 
- */
-int main(int argc, char** argv) {
-
+int main(int argc, char* args[]) {
+    TestGame game;
+    //Game::setupGame(game);
     return 0;
 }
-
