@@ -7,7 +7,7 @@
 #endif
 
 int main(int argc, char* args[]) {
-    TestGame game;
-    //Game::setupGame(game);
+    Game game;
+    Game::setupGame(game);
     return 0;
 }

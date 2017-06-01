@@ -15,12 +15,13 @@ public:
   Game(std::string name);
   Game(std::string name, DisplayMode displayMode);
   Game(std::string name, DisplayMode displayMode, int width, int height);
+  Game(std::string name, DisplayMode displayMode, int width, int height, int updateTime);
   //Destructor
   virtual ~Game();
   //Initialize
   void init();
   //User init code
-  virtual void main();
+  virtual void setup();
   //Game Loop
   void loop();
   //User update code
@@ -32,6 +33,7 @@ private:
   DisplayMode displayMode;
   int width;
   int height;
+  int updateTime;
 };
 
 #endif
