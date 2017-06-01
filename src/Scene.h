@@ -8,7 +8,7 @@ public:
   Scene();
   virtual ~Scene();
   //Update
-  void update();
+  void update(SDL_Window window);
   //Add Object
   void addObject(Object object);
   //Remove Object
