@@ -7,3 +7,7 @@ TestGame::TestGame() {
 TestGame::~TestGame() {
 
 }
+
+void setup() {
+
+}

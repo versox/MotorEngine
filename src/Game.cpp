@@ -56,6 +56,13 @@ Game::~Game() {
 
 //Initialize
 void Game::init() {
+  //Initialize SDL Subsystems
+
+  //Create a window (all window stuff handled in game)
+
+  //Load a default scene (Motor Engine Splash Screen)
+
+  //Load sound (don't worry about this yet)
 
 }
 
@@ -85,5 +92,11 @@ void Game::update() {
 
 //End
 void Game::end() {
+  //Destroy all scenes
+  //static scene function
+  //Scene::destroy();
 
+  //Destroy the window crap
+
+  //Quit SDL Subsytems
 }

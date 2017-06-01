@@ -28,6 +28,11 @@ public:
   virtual void update();
   //End
   void end();
+
+  //API
+  void setScene(Scene scene) {
+
+  }
 private:
   std::string name;
   DisplayMode displayMode;
