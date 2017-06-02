@@ -3,15 +3,11 @@
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <df root="." name="0">
       <df name="src">
-        <in>Event.cpp</in>
-        <in>Event.h</in>
         <in>Game.cpp</in>
         <in>Game.h</in>
-        <in>Object.cpp</in>
-        <in>Object.h</in>
-        <in>Window.cpp</in>
-        <in>Window.h</in>
         <in>main.cpp</in>
+        <in>object.cpp</in>
+        <in>object.h</in>
       </df>
     </df>
     <logicalFolder name="ExternalFiles"
@@ -41,25 +37,25 @@
           <buildCommand>${MAKE} -f Makefile</buildCommand>
           <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
           <executablePath></executablePath>
+          <ccTool>
+            <incDir>
+              <pElem>SDL2.dll</pElem>
+              <pElem>SDL2_image.dll</pElem>
+              <pElem>SDL2_mixer.dll</pElem>
+              <pElem>SDL2_ttf.dll</pElem>
+            </incDir>
+          </ccTool>
         </makeTool>
       </makefileType>
-      <item path="src/Event.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/Event.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="src/Game.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/Game.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="src/Object.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/Object.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="src/Window.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/Window.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="src/main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/object.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/object.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

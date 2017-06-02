@@ -11,7 +11,7 @@ void Game::setupGame(Game& g) {
 //Constructors
 Game::Game() {
   name = "Generic Motor Engine Game";
-  displayMode = FIXED_WINDOW;
+  displayMode = SCALED_FULLSCREEN;
   width = 800;
   height = 400;
   updateTime = 10;
@@ -19,7 +19,7 @@ Game::Game() {
 
 Game::Game(std::string name) {
   this->name = name;
-  displayMode = FIXED_WINDOW;
+  displayMode = SCALED_FULLSCREEN;
   width = 800;
   height = 400;
   updateTime = 10;
@@ -59,11 +59,19 @@ void Game::init() {
   //Initialize SDL Subsystems
 
   //Create a window (all window stuff handled in game)
-
+    if(SDL_Init(SDL_INIT_VIDEO)<0){
+        std::printf("Unable to initialize window. Error %s\n", SDL_GetError());
+    }else{
+        window = SDL_CreateWindow(name.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, displayMode);
+        if(window==NULL){
+            std::printf("Unable to create window. Error %s\n", SDL_GetError());
+        }else{
+            surface = SDL_GetWindowSurface(window);
+            
+        }
+    }
   //Load a default scene (Motor Engine Splash Screen)
-
   //Load sound (don't worry about this yet)
-
 }
 
 //User init
@@ -80,12 +88,17 @@ void Game::loop() {
   while(!quit) {
     currentTime = SDL_GetTicks();
     if(currentTime > lastTime + 10) {
-
-    }
+        while(SDL_PollEvent(&event)!=0){
+            if(event.type == SDL_QUIT){
+                quit=true;
+            }
+        }
+     }
   }
+  end();
 }
 
-//User updatej'
+//User update
 void Game::update() {
 
 }
@@ -95,8 +108,10 @@ void Game::end() {
   //Destroy all scenes
   //static scene function
   //Scene::destroy();
-
+    SDL_FreeSurface(image);
   //Destroy the window crap
-
+    SDL_DestroyWindow(window);
+    window=NULL;
   //Quit SDL Subsytems
+    SDL_Quit();
 }
