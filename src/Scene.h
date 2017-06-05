@@ -15,9 +15,10 @@ public:
   //Update
   void update();
   //Add Object
-  void addObject(Object object);
+//  void addObject(Object object);
   //Remove Object
-  void removeObject(Object object);
+//  void removeObject(Object object);
+  SDL_Renderer * getRenderer();
 private:
   SDL_Window * window;
   SDL_Renderer * renderer;

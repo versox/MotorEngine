@@ -4,20 +4,21 @@
     <df root="." name="0">
       <df name="build">
       </df>
-      <df name="doc">
-      </df>
       <df name="obj">
       </df>
       <df name="src">
-        <in>Event.cpp</in>
-        <in>Event.h</in>
+        <in>EventHandler.h</in>
         <in>Game.cpp</in>
         <in>Game.h</in>
-        <in>Object.cpp</in>
-        <in>Object.h</in>
-        <in>Window.cpp</in>
-        <in>Window.h</in>
+        <in>Scene.cpp</in>
+        <in>Scene.h</in>
+        <in>Sprite.cpp</in>
+        <in>Sprite.h</in>
+        <in>TestGame.cpp</in>
+        <in>TestGame.h</in>
         <in>main.cpp</in>
+        <in>object.cpp</in>
+        <in>object.h</in>
       </df>
     </df>
   </logicalFolder>

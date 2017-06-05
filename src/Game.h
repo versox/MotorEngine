@@ -2,7 +2,9 @@
 #define GAME_H
 
 #include <string>
+#include <cstdio>
 #include "SDL.h"
+#include "SDL_image.h"
 
 enum DisplayMode {SCALED_FULLSCREEN, FIXED_WINDOW};
 
@@ -30,11 +32,16 @@ public:
   void end();
 
   //API
-  void setScene(Scene scene) {
-
-  }
+  /*void setScene(Scene scene) {
+  }*/
+  
+  SDL_Window * getWindow();
 private:
+  SDL_Window* window;
+  SDL_Surface* surface;
+  SDL_Event event;
   std::string name;
+  std::string imgPath = "H:\\fox.bmp";
   DisplayMode displayMode;
   int width;
   int height;
