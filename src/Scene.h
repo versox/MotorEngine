@@ -2,6 +2,7 @@
 #define SCENE_H
 
 #include <iostream>
+#include <vector>
 #include "SDL.h"
 
 class Scene {
@@ -15,13 +16,13 @@ public:
   //Update
   void update();
   //Add Object
-//  void addObject(Object object);
-  //Remove Object
-//  void removeObject(Object object);
+  void addObject(Object object);
+  //Get Renderer
   SDL_Renderer * getRenderer();
 private:
   SDL_Window * window;
   SDL_Renderer * renderer;
+  std::vector<Object*> gameObjects;
 };
 
 #endif

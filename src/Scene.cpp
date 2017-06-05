@@ -16,18 +16,10 @@ void Scene::init() {
   }
 }
 
-void Scene::setScene() {
-  
-}
-
 void Scene::update() {
 
 }
 
-void Scene::addObject() {
-
-}
-
-void Scene::removeObject() {
-
+void Scene::addObject(Object* object) {
+  gameObjects.push_back(object);
 }
