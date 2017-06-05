@@ -33,8 +33,9 @@ public:
 
   //API
   /*void setScene(Scene scene) {
-
   }*/
+  
+  SDL_Window * getWindow();
 private:
   SDL_Window* window;
   SDL_Surface* surface;

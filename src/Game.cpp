@@ -103,6 +103,10 @@ void Game::update() {
 
 }
 
+SDL_Window* Game::getWindow(){
+    return window;
+}
+
 //End
 void Game::end() {
   //Destroy all scenes
