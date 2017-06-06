@@ -1,9 +1,9 @@
-#include Object.h
+#include "Object.h"
 
-Object::Object() {
-
+Object::Object(Sprite* sprite) {
+  this->sprite = sprite;
 }
 
 Object::~Object() {
-  
+
 }

@@ -1,26 +1,27 @@
 #include "Sprite.h"
- 
 
-void Sprite::setup(){
-    
+
+void Sprite::setup(SDL_Renderer* renderer) {
+
     SDL_Surface* surface = IMG_Load(path.c_str());
-    if(surface = NULL)
+    if(surface == NULL)
          {
-    printf( "Unable to load image %s! SDL_image Error: %s\n", path.c_str(), IMG_GetError() );
+    std::cout << "Unable to load image! SDL_image Error: " << IMG_GetError();
   }
     texture = SDL_CreateTextureFromSurface(renderer, surface);
-    if(texture = NULL)
+    if(texture == NULL)
     {
-     printf( "Unable to create texture from %s! SDL Error: %s\n", path.c_str(), SDL_GetError() );
+     std::cout << "Unable to create texture. SDL Error: " << SDL_GetError();
   }
-    Width = surface->w;
- succ   Height = surface->h;
+    width = surface->w;
+    height = surface->h;
     SDL_FreeSurface( surface );
 }
-    
 
-Sprite::Sprite(std::string path, double scale=1, SDL_Renderer* renderer) {
-    this->renderer = renderer;
+
+Sprite::Sprite(std::string path, double scale) {
+    this->path = path;
+    this->scale = scale;
 }
 
 Sprite::~Sprite() {
@@ -28,5 +29,5 @@ Sprite::~Sprite() {
 }
 
 SDL_Texture * Sprite::getTexture() {
-    return Texture;
+    return texture;
 }

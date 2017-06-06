@@ -6,6 +6,8 @@
 #include "SDL.h"
 #include "SDL_image.h"
 #include "Scene.h"
+#include "Sprite.h"
+#include "Object.h"
 
 enum DisplayMode {SCALED_FULLSCREEN, FIXED_WINDOW};
 
@@ -33,13 +35,18 @@ public:
   void end();
 
   //API
+  //Scenes
   Scene* createScene();
   void setScene(Scene* scene);
-
+  //Sprites
+  Sprite* createSprite(std::string path, double scale = 1);
+  //Objects
+  Object* createObject(Sprite* sprite);
   SDL_Window * getWindow();
 private:
   //Window
   SDL_Window* window;
+  SDL_Renderer* renderer;
   std::string name;
   DisplayMode displayMode;
   int width;
@@ -47,7 +54,7 @@ private:
   int updateTime;
 
   //Scene
-  Scene* scene;
+  Scene* currentScene;
 };
 
 #endif

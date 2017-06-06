@@ -65,27 +65,32 @@ void Game::init() {
   if(SDL_Init(SDL_INIT_VIDEO)<0){
       std::printf("Unable to initialize window. Error %s\n", SDL_GetError());
   } else {
-      switch(DisplayMode) {
+      switch(displayMode) {
         case SCALED_FULLSCREEN:
-          window = SDL_CreateWindow(name.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, NULL, NULL, SDL_WINDOW_FULLSCREEN_DESKTOP);
-          int* width, height;
+          window = SDL_CreateWindow(name.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_FULLSCREEN_DESKTOP);
+          /*int* width, height;
           SDL_GetWindowSize(window, width, height);
           this->width = *width;
-          this->height = *height;
+          this->height = *height;*/
           break;
         case FIXED_WINDOW:
-          window = SDL_CreateWindow(name.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height);
+          window = SDL_CreateWindow(name.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_OPENGL);
           break;
       }
       if(window==NULL){
           std::printf("Unable to create window. Error %s\n", SDL_GetError());
       }
   }
+  //Setup the renderer
+  renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+  if(renderer == NULL) {
+    std::cout << SDL_GetError();
+    SDL_Quit();
+  }
   //Load a default scene (Motor Engine Splash Screen)
   Scene* splash = createScene();
-  int splashScale = 
-  Sprite* splashImageSprite = new Sprite("asset/splash.png");
-  Object* splashImageObject = new Object(splashImageSprite);
+  Sprite* splashImageSprite = createSprite("asset/splash.png", 1);
+  Object* splashImageObject = createObject(splashImageSprite);
   splash->addObject(splashImageObject);
   setScene(splash);
   //Load sound (don't worry about this yet)
@@ -102,7 +107,7 @@ void Game::loop() {
   unsigned int lastTime = 0;
   unsigned int currentTime;
 
-  while(!quit) {
+  /*while(!quit) {
     currentTime = SDL_GetTicks();
     if(currentTime > lastTime + 10) {
         while(SDL_PollEvent(&event)!=0){
@@ -111,7 +116,7 @@ void Game::loop() {
             }
         }
      }
-  }
+  }*/
   end();
 }
 
@@ -129,7 +134,7 @@ void Game::end() {
   //Destroy all scenes
   //static scene function
   //Scene::destroy();
-    SDL_FreeSurface(image);
+  SDL_DestroyRenderer(renderer);
   //Destroy the window crap
     SDL_DestroyWindow(window);
     window=NULL;
@@ -138,9 +143,19 @@ void Game::end() {
 }
 
 Scene* Game::createScene() {
-  return new Scene(window);
+  return new Scene();
 }
 
 void Game::setScene(Scene* scene) {
-  this->scene = scene;
+  currentScene = scene;
+}
+
+Sprite* Game::createSprite(std::string path, double scale) {
+  Sprite* s = new Sprite(path, scale);
+  s->setup(renderer);
+  return s;
+}
+
+Object* Game::createObject(Sprite* sprite) {
+  return new Object(sprite);
 }

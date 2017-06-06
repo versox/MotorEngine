@@ -3,21 +3,20 @@
 
 //Robbie
 
+#include <iostream>
 #include <string>
 #include "SDL.h"
-#include "Game.h"
+#include "SDL_Image.h"
 
 class Sprite {
 public:
-  Sprite(std::string path, double scale=1, SDL_Renderer* renderer);
+  Sprite(std::string path, double scale = 1.0);
   virtual ~Sprite();
   SDL_Texture* getTexture();
-  void makeTexture(std::string path);
-  void setup();
-  void render();
+  void setup(SDL_Renderer* renderer);
 private:
-    SDL_Renderer* renderer;
     SDL_Texture* texture;
+    std::string path;
     double height;
     double width;
     double scale;
