@@ -7,6 +7,7 @@ class Object {
 public:
   Object(Sprite* sprite);
   virtual ~Object();
+  Sprite* getSprite();
 private:
   Sprite* sprite;
 };

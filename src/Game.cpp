@@ -87,12 +87,17 @@ void Game::init() {
     std::cout << SDL_GetError();
     SDL_Quit();
   }
+  //Set a white background color
+  SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
   //Load a default scene (Motor Engine Splash Screen)
   Scene* splash = createScene();
   Sprite* splashImageSprite = createSprite("asset/splash.png", 1);
   Object* splashImageObject = createObject(splashImageSprite);
   splash->addObject(splashImageObject);
   setScene(splash);
+  //Render Once and Wait
+  currentScene->render(renderer);
+  SDL_Delay(3000);
   //Load sound (don't worry about this yet)
 }
 

@@ -7,3 +7,7 @@ Object::Object(Sprite* sprite) {
 Object::~Object() {
 
 }
+
+Sprite* Object::getSprite() {
+  return sprite;
+}
