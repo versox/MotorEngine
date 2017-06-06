@@ -56,21 +56,38 @@ Game::~Game() {
 
 //Initialize
 void Game::init() {
-  //Initialize SDL Subsystems
-
-  //Create a window (all window stuff handled in game)
-    if(SDL_Init(SDL_INIT_VIDEO)<0){
-        std::printf("Unable to initialize window. Error %s\n", SDL_GetError());
-    }else{
-        window = SDL_CreateWindow(name.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, displayMode);
-        if(window==NULL){
-            std::printf("Unable to create window. Error %s\n", SDL_GetError());
-        }else{
-            surface = SDL_GetWindowSurface(window);
-            
-        }
-    }
+  //Initialize external SDL Subsystems
+  if(IMG_Init(IMG_INIT_PNG)<0) {
+    std::cout << "Failed to init png" << std::endl;
+  }
+  //Initialize main SDL system and
+  //create a window (all window stuff handled in game)
+  if(SDL_Init(SDL_INIT_VIDEO)<0){
+      std::printf("Unable to initialize window. Error %s\n", SDL_GetError());
+  } else {
+      switch(DisplayMode) {
+        case SCALED_FULLSCREEN:
+          window = SDL_CreateWindow(name.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, NULL, NULL, SDL_WINDOW_FULLSCREEN_DESKTOP);
+          int* width, height;
+          SDL_GetWindowSize(window, width, height);
+          this->width = *width;
+          this->height = *height;
+          break;
+        case FIXED_WINDOW:
+          window = SDL_CreateWindow(name.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height);
+          break;
+      }
+      if(window==NULL){
+          std::printf("Unable to create window. Error %s\n", SDL_GetError());
+      }
+  }
   //Load a default scene (Motor Engine Splash Screen)
+  Scene* splash = createScene();
+  int splashScale = 
+  Sprite* splashImageSprite = new Sprite("asset/splash.png");
+  Object* splashImageObject = new Object(splashImageSprite);
+  splash->addObject(splashImageObject);
+  setScene(splash);
   //Load sound (don't worry about this yet)
 }
 
@@ -118,4 +135,12 @@ void Game::end() {
     window=NULL;
   //Quit SDL Subsytems
     SDL_Quit();
+}
+
+Scene* Game::createScene() {
+  return new Scene(window);
+}
+
+void Game::setScene(Scene* scene) {
+  this->scene = scene;
 }

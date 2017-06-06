@@ -2,6 +2,7 @@
 #define SCENE_H
 
 #include <iostream>
+#include <vector>
 #include "SDL.h"
 
 class Scene {
@@ -10,18 +11,18 @@ public:
   virtual ~Scene();
   //Initialize
   void init();
-  //Set Scene
-  void setScene();
   //Update
   void update();
-  //Add Object
-//  void addObject(Object object);
-  //Remove Object
-//  void removeObject(Object object);
+  //Get Renderer
   SDL_Renderer * getRenderer();
+
+  //API
+  //Add Object
+  void addObject(Object* object);
 private:
   SDL_Window * window;
   SDL_Renderer * renderer;
+  std::vector<Object*> gameObjects;
 };
 
 #endif
