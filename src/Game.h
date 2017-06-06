@@ -5,12 +5,13 @@
 #include <cstdio>
 #include "SDL.h"
 #include "SDL_image.h"
+#include "Scene.h"
 
 enum DisplayMode {SCALED_FULLSCREEN, FIXED_WINDOW};
 
 class Game {
 public:
-  //SetupGame
+  //Setup Game
   static void setupGame(Game& g);
   //Constructors
   Game();
@@ -32,20 +33,21 @@ public:
   void end();
 
   //API
-  /*void setScene(Scene scene) {
-  }*/
-  
+  Scene* createScene();
+  void setScene(Scene* scene);
+
   SDL_Window * getWindow();
 private:
+  //Window
   SDL_Window* window;
-  SDL_Surface* surface;
-  SDL_Event event;
   std::string name;
-  std::string imgPath = "H:\\fox.bmp";
   DisplayMode displayMode;
   int width;
   int height;
   int updateTime;
+
+  //Scene
+  Scene* scene;
 };
 
 #endif
