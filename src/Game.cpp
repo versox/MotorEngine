@@ -92,7 +92,8 @@ void Game::init() {
   //Load a default scene (Motor Engine Splash Screen)
   Scene* splash = createScene();
   Sprite* splashImageSprite = createSprite("splash.png", 1);
-  Object* splashImageObject = createObject(splashImageSprite);
+  Object* splashImageObject = createObject(splashImageSprite, 0, 0, 0, 0);
+  //
   splash->addObject(splashImageObject);
   setScene(splash);
   //Render Once and Wait
@@ -161,6 +162,6 @@ Sprite* Game::createSprite(std::string path, double scale) {
   return s;
 }
 
-Object* Game::createObject(Sprite* sprite) {
-  return new Object(sprite);
+Object* Game::createObject(Sprite* sprite, int xPos, int yPos, int w, int h) {
+  return new Object(sprite, xPos, yPos, w, h);
 }

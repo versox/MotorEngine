@@ -41,7 +41,7 @@ public:
   //Sprites
   Sprite* createSprite(std::string path, double scale = 1);
   //Objects
-  Object* createObject(Sprite* sprite);
+  Object* createObject(Sprite* sprite, int xPos, int yPos, int w, int h);
   SDL_Window * getWindow();
 private:
   //Window

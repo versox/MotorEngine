@@ -18,7 +18,6 @@ void Sprite::setup(SDL_Renderer* renderer) {
     SDL_FreeSurface( surface );
 }
 
-
 Sprite::Sprite(std::string path, double scale) {
     this->path = path;
     this->scale = scale;
