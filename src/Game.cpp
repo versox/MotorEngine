@@ -56,10 +56,6 @@ Game::~Game() {
 
 //Initialize
 void Game::init() {
-  //Initialize external SDL Subsystems
-  if(IMG_Init(IMG_INIT_PNG)<0) {
-    std::cout << "Failed to init png" << std::endl;
-  }
   //Initialize main SDL system and
   //create a window (all window stuff handled in game)
   if(SDL_Init(SDL_INIT_VIDEO)<0){
@@ -81,6 +77,10 @@ void Game::init() {
           std::printf("Unable to create window. Error %s\n", SDL_GetError());
       }
   }
+  //Initialize external SDL Subsystems
+  if(IMG_Init(IMG_INIT_PNG)<0) {
+    std::cout << "Failed to init png" << std::endl;
+  }
   //Setup the renderer
   renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
   if(renderer == NULL) {
@@ -91,7 +91,7 @@ void Game::init() {
   SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
   //Load a default scene (Motor Engine Splash Screen)
   Scene* splash = createScene();
-  Sprite* splashImageSprite = createSprite("asset/splash.png", 1);
+  Sprite* splashImageSprite = createSprite("splash.png", 1);
   Object* splashImageObject = createObject(splashImageSprite);
   splash->addObject(splashImageObject);
   setScene(splash);
