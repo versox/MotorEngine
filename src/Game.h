@@ -13,8 +13,6 @@ enum DisplayMode {SCALED_FULLSCREEN, FIXED_WINDOW};
 
 class Game {
 public:
-  //Setup Game
-  static void setupGame(Game& g);
   //Constructors
   Game();
   Game(std::string name);
@@ -23,18 +21,17 @@ public:
   Game(std::string name, DisplayMode displayMode, int width, int height, int updateTime);
   //Destructor
   virtual ~Game();
+private:
   //Initialize
   void init();
-  //User init code
-  virtual void setup();
   //Game Loop
   void loop();
-  //User update code
-  virtual void update();
   //End
   void end();
 
+public:
   //API
+  void startGame();
   //Scenes
   Scene* createScene();
   void setScene(Scene* scene);

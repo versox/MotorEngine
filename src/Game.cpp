@@ -1,13 +1,5 @@
 #include "Game.h"
 
-//SetupGame
-void Game::setupGame(Game& g) {
-  g.init();
-  g.setup();
-  g.loop();
-  g.end();
-}
-
 //Constructors
 Game::Game() {
   name = "Generic Motor Engine Game";
@@ -15,6 +7,7 @@ Game::Game() {
   width = 800;
   height = 400;
   updateTime = 10;
+  init();
 }
 
 Game::Game(std::string name) {
@@ -23,6 +16,7 @@ Game::Game(std::string name) {
   width = 800;
   height = 400;
   updateTime = 10;
+  init();
 }
 
 Game::Game(std::string name, DisplayMode displayMode) {
@@ -31,6 +25,7 @@ Game::Game(std::string name, DisplayMode displayMode) {
   width = 800;
   height = 400;
   updateTime = 10;
+  init();
 }
 
 Game::Game(std::string name, DisplayMode displayMode, int width, int height) {
@@ -39,6 +34,7 @@ Game::Game(std::string name, DisplayMode displayMode, int width, int height) {
   this->width = width;
   this->height = height;
   updateTime = 10;
+  init();
 }
 
 Game::Game(std::string name, DisplayMode displayMode, int width, int height, int updateTime) {
@@ -47,11 +43,12 @@ Game::Game(std::string name, DisplayMode displayMode, int width, int height, int
   this->width = width;
   this->height = height;
   this->updateTime = updateTime;
+  init();
 }
 
 //Destructor
 Game::~Game() {
-
+  end();
 }
 
 //Initialize
@@ -102,11 +99,6 @@ void Game::init() {
   //Load sound (don't worry about this yet)
 }
 
-//User init
-void Game::setup() {
-
-}
-
 //Game loop
 void Game::loop() {
   bool quit = false;
@@ -126,15 +118,6 @@ void Game::loop() {
   end();
 }
 
-//User update
-void Game::update() {
-
-}
-
-SDL_Window* Game::getWindow(){
-    return window;
-}
-
 //End
 void Game::end() {
   //Destroy all scenes
@@ -146,6 +129,12 @@ void Game::end() {
     window=NULL;
   //Quit SDL Subsytems
     SDL_Quit();
+}
+
+// API
+
+void startGame() {
+  //loop();
 }
 
 Scene* Game::createScene() {
@@ -164,4 +153,8 @@ Sprite* Game::createSprite(std::string path, double scale) {
 
 Object* Game::createObject(Sprite* sprite, int xPos, int yPos, int w, int h) {
   return new Object(sprite, xPos, yPos, w, h);
+}
+
+SDL_Window* Game::getWindow(){
+    return window;
 }
