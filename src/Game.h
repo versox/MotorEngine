@@ -5,11 +5,13 @@
 #include <cstdio>
 #include "SDL.h"
 #include "SDL_image.h"
+#include "EventHandler.h"
 #include "Scene.h"
 #include "Sprite.h"
 #include "Object.h"
 
 enum DisplayMode {SCALED_FULLSCREEN, FIXED_WINDOW};
+enum GameMode {QUIT, SPLASH, GAME};
 
 class Game {
 public:
@@ -41,6 +43,8 @@ public:
   Object* createObject(Sprite* sprite, int xPos, int yPos, int w, int h);
   SDL_Window * getWindow();
 private:
+  GameMode gameMode;
+  EventHandler eventHandler;
   //Window
   SDL_Window* window;
   SDL_Renderer* renderer;
@@ -51,6 +55,7 @@ private:
   int updateTime;
 
   //Scene
+  Scene* splashScene;
   Scene* currentScene;
 };
 

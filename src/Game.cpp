@@ -7,7 +7,9 @@ Game::Game() {
   width = 800;
   height = 400;
   updateTime = 10;
+  gameMode = SPLASH;
   init();
+  loop();
 }
 
 Game::Game(std::string name) {
@@ -16,7 +18,9 @@ Game::Game(std::string name) {
   width = 800;
   height = 400;
   updateTime = 10;
+  gameMode = SPLASH;
   init();
+  loop();
 }
 
 Game::Game(std::string name, DisplayMode displayMode) {
@@ -25,7 +29,9 @@ Game::Game(std::string name, DisplayMode displayMode) {
   width = 800;
   height = 400;
   updateTime = 10;
+  gameMode = SPLASH;
   init();
+  loop();
 }
 
 Game::Game(std::string name, DisplayMode displayMode, int width, int height) {
@@ -34,7 +40,9 @@ Game::Game(std::string name, DisplayMode displayMode, int width, int height) {
   this->width = width;
   this->height = height;
   updateTime = 10;
+  gameMode = SPLASH;
   init();
+  loop();
 }
 
 Game::Game(std::string name, DisplayMode displayMode, int width, int height, int updateTime) {
@@ -43,7 +51,9 @@ Game::Game(std::string name, DisplayMode displayMode, int width, int height, int
   this->width = width;
   this->height = height;
   this->updateTime = updateTime;
+  gameMode = SPLASH;
   init();
+  loop();
 }
 
 //Destructor
@@ -78,6 +88,9 @@ void Game::init() {
   if(IMG_Init(IMG_INIT_PNG)<0) {
     std::cout << "Failed to init png" << std::endl;
   }
+  //Sound
+  //Mix_OpenAudio
+
   //Setup the renderer
   renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
   if(renderer == NULL) {
@@ -87,34 +100,41 @@ void Game::init() {
   //Set a white background color
   SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
   //Load a default scene (Motor Engine Splash Screen)
-  Scene* splash = createScene();
+  splashScene = createScene();
   Sprite* splashImageSprite = createSprite("splash.png", 1);
   Object* splashImageObject = createObject(splashImageSprite, 0, 0, 0, 0);
   //
-  splash->addObject(splashImageObject);
-  setScene(splash);
-  //Render Once and Wait
-  currentScene->render(renderer);
-  SDL_Delay(3000);
+  splashScene->addObject(splashImageObject);
+  setScene(splashScene);
   //Load sound (don't worry about this yet)
 }
 
 //Game loop
 void Game::loop() {
-  bool quit = false;
   unsigned int lastTime = 0;
   unsigned int currentTime;
 
-  /*while(!quit) {
+  while(gameMode != QUIT) {
     currentTime = SDL_GetTicks();
     if(currentTime > lastTime + 10) {
-        while(SDL_PollEvent(&event)!=0){
-            if(event.type == SDL_QUIT){
-                quit=true;
-            }
-        }
-     }
-  }*/
+      switch(gameMode) {
+        case SPLASH:
+          if(eventHandler->handle(splashScene)) {
+            gameMode = QUIT;
+          }
+          splashScene->render(renderer);
+          break;
+        case GAME:
+          if(eventHandler->handle(currentScene)) {
+            gameMode = QUIT;
+          }
+          currentScene->render(renderer);
+          break;
+        case QUIT:
+          break;
+      }
+    }
+  }
   end();
 }
 
@@ -127,14 +147,18 @@ void Game::end() {
   //Destroy the window crap
     SDL_DestroyWindow(window);
     window=NULL;
+    //Quit Sound
+    //Mix_Closeaudio
+
   //Quit SDL Subsytems
     SDL_Quit();
 }
 
 // API
 
-void startGame() {
-  //loop();
+void Game::startGame() {
+  //Change the gamemode to normal run of game
+  gameMode = GAME;
 }
 
 Scene* Game::createScene() {
