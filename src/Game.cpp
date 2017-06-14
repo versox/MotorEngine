@@ -9,29 +9,26 @@ Game::Game() {
   updateTime = 10;
   gameMode = SPLASH;
   init();
-  loop();
 }
 
 Game::Game(std::string name) {
   this->name = name;
   displayMode = SCALED_FULLSCREEN;
-  width = 800;
-  height = 400;
+  width = 640;
+  height = 360;
   updateTime = 10;
   gameMode = SPLASH;
   init();
-  loop();
 }
 
 Game::Game(std::string name, DisplayMode displayMode) {
   this->name = name;
   this->displayMode = displayMode;
-  width = 800;
-  height = 400;
+  width = 640;
+  height = 360;
   updateTime = 10;
   gameMode = SPLASH;
   init();
-  loop();
 }
 
 Game::Game(std::string name, DisplayMode displayMode, int width, int height) {
@@ -42,7 +39,6 @@ Game::Game(std::string name, DisplayMode displayMode, int width, int height) {
   updateTime = 10;
   gameMode = SPLASH;
   init();
-  loop();
 }
 
 Game::Game(std::string name, DisplayMode displayMode, int width, int height, int updateTime) {
@@ -53,7 +49,6 @@ Game::Game(std::string name, DisplayMode displayMode, int width, int height, int
   this->updateTime = updateTime;
   gameMode = SPLASH;
   init();
-  loop();
 }
 
 //Destructor
@@ -101,9 +96,8 @@ void Game::init() {
   SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
   //Load a default scene (Motor Engine Splash Screen)
   splashScene = createScene();
-  Sprite* splashImageSprite = createSprite("splash.png", 1);
+  Sprite* splashImageSprite = createSprite("asset/splash.png", 1);
   Object* splashImageObject = createObject(splashImageSprite, 0, 0, 0, 0);
-  //
   splashScene->addObject(splashImageObject);
   setScene(splashScene);
   //Load sound (don't worry about this yet)
@@ -113,19 +107,26 @@ void Game::init() {
 void Game::loop() {
   unsigned int lastTime = 0;
   unsigned int currentTime;
+  unsigned int splashTime = 2500;
 
   while(gameMode != QUIT) {
     currentTime = SDL_GetTicks();
     if(currentTime > lastTime + 10) {
       switch(gameMode) {
         case SPLASH:
-          if(eventHandler->handle(splashScene)) {
-            gameMode = QUIT;
+          if(splashTime > 0) {
+            if(eventHandler.handle(splashScene)) {
+              gameMode = QUIT;
+            }
+            splashScene->render(renderer);
+            splashTime--;
+          } else {
+            gameMode = GAME;
+            std::cout << "Game!" << std::endl;
           }
-          splashScene->render(renderer);
           break;
         case GAME:
-          if(eventHandler->handle(currentScene)) {
+          if(eventHandler.handle(currentScene)) {
             gameMode = QUIT;
           }
           currentScene->render(renderer);
@@ -155,10 +156,8 @@ void Game::end() {
 }
 
 // API
-
 void Game::startGame() {
-  //Change the gamemode to normal run of game
-  gameMode = GAME;
+  loop();
 }
 
 Scene* Game::createScene() {

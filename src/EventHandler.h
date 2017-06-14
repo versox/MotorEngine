@@ -7,7 +7,7 @@ class EventHandler {
 public:
   EventHandler();
   virtual ~EventHandler();
-  bool handle(Scene& scene);
+  bool handle(Scene* scene);
   void registerKey();
 private:
   SDL_Event event;

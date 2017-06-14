@@ -8,10 +8,11 @@ EventHandler::~EventHandler() {
 
 }
 
-bool EventHandler::handle(Scene& scene) {
+bool EventHandler::handle(Scene* scene) {
   while(SDL_PollEvent(&event)!=0) {
-  if(event.type == SDL_QUIT){
-    return true;
+    if(event.type == SDL_QUIT){
+      return true;
+    }
   }
   return false;
 }

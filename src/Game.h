@@ -1,6 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include <iostream>
 #include <string>
 #include <cstdio>
 #include "SDL.h"

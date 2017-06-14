@@ -6,7 +6,7 @@
 #include <iostream>
 #include <string>
 #include "SDL.h"
-#include "SDL_Image.h"
+#include "SDL_image.h"
 
 class Sprite {
 public:
