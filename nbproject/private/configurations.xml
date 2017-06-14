@@ -110,10 +110,10 @@
         <in>Object.h</in>
         <in>Scene.cpp</in>
         <in>Scene.h</in>
+        <in>Sound.cpp</in>
+        <in>Sound.h</in>
         <in>Sprite.cpp</in>
         <in>Sprite.h</in>
-        <in>TestGame.cpp</in>
-        <in>TestGame.h</in>
         <in>main.cpp</in>
         <in>object.cpp</in>
         <in>object.h</in>
