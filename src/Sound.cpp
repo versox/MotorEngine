@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   Sound.cpp
  * Author: browr3317
  *
@@ -13,24 +13,20 @@ using namespace std;
 
 Sound::Sound(std::string path){
 
-    
+
     //loading
-       sound = Mix_loadWAV(path);
-        
+       sound = Mix_LoadWAV(path.c_str());
+
 }
-    
+
    Sound::~Sound()
    {
    //Free
        Mix_FreeChunk(sound);
    }
-   
+
     void Sound::playSound()
     {
     //play it
         Mix_PlayChannel(-1,sound,0);
     }
-   
-
-
-

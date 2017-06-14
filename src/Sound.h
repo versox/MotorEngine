@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   Sound.h
  * Author: browr3317
  *
@@ -12,14 +12,13 @@
 class Sound{
 
 public:
-    
+
     Sound(std::string path);
-    void playSound;
-    virtual ~Sound;
+    void playSound();
+    virtual ~Sound();
 private:
-    Mix_Chunk* sound //insert sound type here (e.g. hit, shot, impact, etc)
-}
+    Mix_Chunk* sound; //insert sound type here (e.g. hit, shot, impact, etc)
+};
 
 
 #endif	/* SOUND_H */
-
