@@ -40,7 +40,7 @@ public:
   void setScene(Scene* scene);
   //Sprites
   Sprite* createSprite(std::string path, double scale = 1);
-  //Objects
+  //ObjectS
   Object* createObject(Sprite* sprite, int xPos, int yPos, int w, int h);
   SDL_Window * getWindow();
 private:
