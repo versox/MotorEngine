@@ -34,6 +34,8 @@ private:
 
 public:
   //API
+  int getWidth() { return width; }
+  int getHeight() { return height; }
   void startGame();
   //Scenes
   Scene* createScene();

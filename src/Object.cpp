@@ -20,9 +20,11 @@ SDL_Rect Object::renderBox(){
     SDL_Rect renderRect;
     renderRect.x=this->x-(this->width/2);
     renderRect.y=this->y-(this->height/2);
-    renderRect.w=this->width-(this->x/2);
-    renderRect.h=this->height-(this->y/2);
-    
+    renderRect.w=this->width;
+    //+(this->x/2);
+    renderRect.h=this->height;
+    //(this->y/2);
+
     return renderRect;
 }
 

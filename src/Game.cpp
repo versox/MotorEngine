@@ -3,9 +3,9 @@
 //Constructors
 Game::Game() {
   name = "Generic Motor Engine Game";
-  displayMode = SCALED_FULLSCREEN;
-  width = 800;
-  height = 400;
+  displayMode = FIXED_WINDOW;
+  width = 640;
+  height = 360;
   updateTime = 10;
   gameMode = SPLASH;
   init();
@@ -13,7 +13,7 @@ Game::Game() {
 
 Game::Game(std::string name) {
   this->name = name;
-  displayMode = SCALED_FULLSCREEN;
+  displayMode = FIXED_WINDOW;
   width = 640;
   height = 360;
   updateTime = 10;
@@ -66,10 +66,7 @@ void Game::init() {
       switch(displayMode) {
         case SCALED_FULLSCREEN:
           window = SDL_CreateWindow(name.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_FULLSCREEN_DESKTOP);
-          /*int* width, height;
-          SDL_GetWindowSize(window, width, height);
-          this->width = *width;
-          this->height = *height;*/
+          SDL_GetWindowSize(window, &width, &height);
           break;
         case FIXED_WINDOW:
           window = SDL_CreateWindow(name.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_OPENGL);
@@ -97,7 +94,7 @@ void Game::init() {
   //Load a default scene (Motor Engine Splash Screen)
   splashScene = createScene();
   Sprite* splashImageSprite = createSprite("asset/splash.png", 1);
-  Object* splashImageObject = createObject(splashImageSprite, 0, 0, 0, 0);
+  Object* splashImageObject = createObject(splashImageSprite, getWidth() / 2, getHeight() / 2, getWidth(), getHeight());
   splashScene->addObject(splashImageObject);
   setScene(splashScene);
   //Load sound (don't worry about this yet)
@@ -107,7 +104,7 @@ void Game::init() {
 void Game::loop() {
   unsigned int lastTime = 0;
   unsigned int currentTime;
-  unsigned int splashTime = 2500;
+  unsigned int splashTime = 500;
 
   while(gameMode != QUIT) {
     currentTime = SDL_GetTicks();
