@@ -115,7 +115,7 @@ void Game::loop() {
             if(eventHandler.handle(splashScene)) {
               gameMode = QUIT;
             }
-            splashScene->render(renderer);
+            splashScene->render();
             splashTime--;
           } else {
             gameMode = GAME;
@@ -126,7 +126,7 @@ void Game::loop() {
           if(eventHandler.handle(currentScene)) {
             gameMode = QUIT;
           }
-          currentScene->render(renderer);
+          currentScene->render();
           break;
         case QUIT:
           break;
@@ -158,7 +158,7 @@ void Game::startGame() {
 }
 
 Scene* Game::createScene() {
-  return new Scene();
+  return new Scene(renderer, width, height);
 }
 
 void Game::setScene(Scene* scene) {
