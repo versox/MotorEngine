@@ -17,7 +17,7 @@ public:
     void playSound();
     virtual ~Sound();
 private:
-    Mix_Chunk* sound; //insert sound type here (e.g. hit, shot, impact, etc)
+    Mix_Chunk* sound; //insert sound type here instead of "sound" (e.g. hit, shot, impact, etc)
 };
 
 
