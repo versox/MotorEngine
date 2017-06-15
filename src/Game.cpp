@@ -1,5 +1,5 @@
 #include "Game.h"
-
+#include <Sound.cpp>
 //Constructors
 Game::Game() {
   name = "Generic Motor Engine Game";
@@ -82,7 +82,14 @@ void Game::init() {
   }
   //Sound
   //Mix_OpenAudio
-
+ 
+  if( Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 4096 ) < 0 ){
+         std::cout << "Mix OpenAudio error" << std::endl;
+  }
+ 
+ 
+ 
+  
   //Setup the renderer
   renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
   if(renderer == NULL) {
@@ -147,7 +154,11 @@ void Game::end() {
     window=NULL;
     //Quit Sound
     //Mix_Closeaudio
-
+    
+    Mix_CloseAudio();
+    
+    
+    
   //Quit SDL Subsytems
     SDL_Quit();
 }
