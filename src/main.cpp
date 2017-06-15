@@ -10,6 +10,7 @@
 int main(int argc, char* args[]) {
     Game game("Test", SCALED_FULLSCREEN);
     Scene* testScene = game.createScene();
+    testScene->setBackground(21, 155, 185, 0);
     Sprite* boxSprite = game.createSprite("asset/box.png");
     testScene->addObject(game.createObject(boxSprite, game.getWidth() / 2, game.getHeight() / 2 , 100, 100));
     testScene->addObject(game.createObject(boxSprite, game.getWidth() / 2 + 100, game.getHeight() / 2 , 100, 100));

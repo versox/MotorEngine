@@ -16,7 +16,11 @@ Sound::Sound(std::string path){
 
     //loading
        sound = Mix_LoadWAV(path.c_str());
-
+        if((sound = NULL)){
+        return false;
+        }       
+ // if everything loaded fine   
+       return true;
 }
 
    Sound::~Sound()
