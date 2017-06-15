@@ -17,6 +17,11 @@ bool EventHandler::handle(Scene* scene) {
   return false;
 }
 
-void EventHandler::registerKey() {
+void EventHandler::registerKey(SDL_Keycode key, Object& obj, void * callbackFunc) {
+  /*void *gptr = dlsym(some symbol..) ;
+typedef void (*fptr)();
+fptr my_fptr = reinterpret_cast<fptr>(reinterpret_cast<long>(gptr)) ;*/
 
+  //typedef void (Object::*)()
+  //registeredKeys.push_back(RegisteredKey(key, obj, ));
 }
