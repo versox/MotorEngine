@@ -9,6 +9,8 @@
 #define	SOUND_H
 #include "SDL_mixer.h"
 #include <string>
+#include <iostream>
+
 class Sound{
 
 public:

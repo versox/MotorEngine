@@ -6,6 +6,7 @@
 #include <cstdio>
 #include "SDL.h"
 #include "SDL_image.h"
+#include "SDL_mixer.h"
 #include "EventHandler.h"
 #include "Scene.h"
 #include "Sprite.h"
