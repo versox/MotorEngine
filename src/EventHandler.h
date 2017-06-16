@@ -9,14 +9,15 @@
 
 class EventHandler {
 public:
+  typedef void (Object::*ObjectCallback)();
   EventHandler();
   virtual ~EventHandler();
   bool handle(Scene* scene);
-  void registerKey(SDL_Keycode key, Object& obj, void * callbackFunc);
+  void registerKey(SDL_Keycode key, Object& object, ObjectCallback callbackFunc);
 private:
   SDL_Event event;
 
-  typedef std::tuple<SDL_Keycode, Object&, void (Object::*) ()> RegisteredKey;
+  typedef std::tuple<SDL_Keycode, Object&, ObjectCallback> RegisteredKey;
   std::vector<RegisteredKey> registeredKeys;
 };
 
