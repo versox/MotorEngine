@@ -8,6 +8,7 @@
 #endif
 
 int main(int argc, char* args[]) {
+  //This is a graphics test / demo... Feel free to delete it and make your own game :)
     Game game("Test", SCALED_FULLSCREEN);
     Scene* testScene = game.createScene();
     testScene->setBackground(21, 155, 185, 0);
