@@ -12,6 +12,8 @@
 # undef main
 #endif
 
+//The code in main.cpp acts as a demo
+
 //The following files are not needed for MotorEngine to function
 //they were just included as part of the demo:
 // SceneSwitcher.cpp
