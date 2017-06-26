@@ -37,6 +37,7 @@ public:
   //API
   int getWidth() { return width; }
   int getHeight() { return height; }
+  EventHandler* getEventHandler() { return &eventHandler; }
   void startGame();
   //Scenes
   Scene* createScene();

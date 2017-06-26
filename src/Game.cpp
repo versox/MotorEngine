@@ -126,13 +126,13 @@ void Game::loop() {
             splashTime--;
           } else {
             gameMode = GAME;
-            std::cout << "Game!" << std::endl;
           }
           break;
         case GAME:
           if(eventHandler.handle(currentScene)) {
             gameMode = QUIT;
           }
+          currentScene->update();
           currentScene->render();
           break;
         case QUIT:

@@ -22,10 +22,15 @@ public:
   //API
   //Add Object
   void addObject(Object* object);
+  //Get Objects
+  std::vector<Object*> getObjects() { return gameObjects; }
 private:
     SDL_Renderer* renderer;
     int w, h;
-  std::vector<Object*> gameObjects;
+    SDL_Rect screen;
+    Sprite* background;
+    bool imageBackground = false;
+    std::vector<Object*> gameObjects;
 };
 
 #endif

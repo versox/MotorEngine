@@ -7,6 +7,7 @@ class Object {
 public:
   Object(Sprite* sprite, int xPos, int yPos, int w, int h);
   virtual ~Object();
+  virtual void update();
   Sprite* getSprite();
   SDL_Rect renderBox();
   bool collision(Object* obj1, Object* obj2);

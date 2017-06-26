@@ -35,3 +35,6 @@ bool Object::collision(Object* obj1, Object* obj2){
     }
     return collide;
 }
+
+void Object::update() {
+}
